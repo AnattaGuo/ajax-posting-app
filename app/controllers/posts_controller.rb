@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.order("id DESC").all    # 新贴文放前面
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.user = current_user
@@ -17,7 +17,6 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id]) # 只能删除自己的贴文
     @post.destroy
 
-    redirect_to posts_path
   end
 
   protected
