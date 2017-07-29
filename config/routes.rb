@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post "favorite" => "posts#favorite"
       post "unfavorite" => "posts#unfavorite"
       post "toggle_flag" => "posts#toggle_flag"
+      post "rate" => "posts#rate"
     end
   end
 
