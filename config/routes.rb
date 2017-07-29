@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     member do
       post "like" => "posts#like"
       post "unlike" => "posts#unlike"
+      post "favorite" => "posts#favorite"
+      post "unfavorite" => "posts#unfavorite"
     end
   end
 

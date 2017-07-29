@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id]) # 只能删除自己的贴文
     @post.destroy
-
   end
 
   def like
@@ -22,16 +21,28 @@ class PostsController < ApplicationController
     unless @post.find_like(current_user)  # 如果已经按讚过了，就略过不再新增
       Like.create( :user => current_user, :post => @post)
     end
-
   end
 
   def unlike
     @post = Post.find(params[:id])
     like = @post.find_like(current_user)
     like.destroy
-
     render "like"
+  end
 
+  def favorite
+     @post = Post.find(params[:id])
+     unless @post.find_like(current_user)  # 如果已经按讚过了，就略过不再新增
+      Favorite.create( :user => current_user, :post => @post)
+     end
+  end
+
+  def unfavorite
+    @post = Post.find(params[:id])
+    favorite = @post.find_favorite(current_user)
+    favorite.destroy
+
+    render "favorite"
   end
 
   protected
